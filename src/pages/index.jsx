@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
+import { Helmet } from "react-helmet"
 
 const pageStyles = {
   color: "#232129",
@@ -39,6 +40,7 @@ const descriptionStyle = {
 const IndexPage = ({ data }) => {
   return (
     <main style={pageStyles}>
+      <Helmet title="Blog Overview" />
       <h1 style={headingStyles}>
         Blog Overview
       </h1>

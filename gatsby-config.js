@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config()
 
 module.exports = {
   siteMetadata: {
@@ -9,6 +9,13 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-transformer-remark",
     {
+      resolve: "gatsby-source-plausible",
+      options: {
+        apiKey: process.env.PLAUSIBLE_API_KEY,
+        siteId: process.env.SITE_ID,
+      },
+    },
+    {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "content",
@@ -16,4 +23,4 @@ module.exports = {
       },
     },
   ],
-};
+}

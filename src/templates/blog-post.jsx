@@ -1,5 +1,6 @@
 import * as React from "react"
 import { graphql, Link } from "gatsby"
+import { Helmet } from "react-helmet"
 
 const pageStyles = {
   color: "#232129",
@@ -9,7 +10,7 @@ const pageStyles = {
 const headingStyles = {
   marginTop: 0,
   marginBottom: 64,
-  maxWidth: 320,
+  maxWidth: 640,
 }
 const paragraphStyles = {
   marginBottom: 48,
@@ -24,6 +25,7 @@ const linkStyle = {
 const BlogPost = ({ data }) => {
   return (
     <main style={pageStyles}>
+      <Helmet title={data.post.frontmatter.title} />
       <h1 style={headingStyles}>
         {data.post.frontmatter.title}
       </h1>
@@ -38,8 +40,8 @@ const BlogPost = ({ data }) => {
 export default BlogPost
 
 export const query = graphql`
-  query($id: String){
-    post: markdownRemark(id: { eq: $id }) {
+  query($slug: String){
+    post: markdownRemark(frontmatter: {slug: {eq: $slug}}) {
       html
       frontmatter {
         title

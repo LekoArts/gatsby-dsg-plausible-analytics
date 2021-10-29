@@ -5,23 +5,37 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     {
-      allMarkdownRemark {
+      posts: allMarkdownRemark {
         nodes {
           frontmatter {
             slug
           }
         }
       }
+      plausible: allPlausibleTopPage(
+        sort: { fields: visitors, order: DESC }
+        filter: { slug: { ne: "/" } }
+        limit: 3
+      ) {
+        nodes {
+          slug
+        }
+      }
     }
   `)
-  
-  result.data.allMarkdownRemark.nodes.forEach((node) => {
+
+  const plausibleTopPages = result.data.plausible.nodes.map((page) => page.slug)
+
+  result.data.posts.nodes.forEach((post) => {
+    const slug = post.frontmatter.slug
+    const isTopPage = plausibleTopPages.includes(slug)
     createPage({
-      path: node.frontmatter.slug,
+      path: slug,
       component: templatePath,
       context: {
-        slug: node.frontmatter.slug,
+        slug: slug,
       },
+      defer: !isTopPage,
     })
   })
 }
