@@ -1,17 +1,16 @@
 import * as React from "react"
 
-const dataDomain = ''
-
+const DATA_DOMAIN = 'your-data-domain'
 const PLAUSIBLE_DOMAIN = `plausible.io`
 const SCRIPT_URI = `/js/plausible.js`
 
 export const onRenderBody = ({ setHeadComponents }) => {
   if (process.env.NODE_ENV === `production`) {
     const scriptProps = {
-      "data-domain": dataDomain,
+      "data-domain": DATA_DOMAIN,
       src: `https://${PLAUSIBLE_DOMAIN}${SCRIPT_URI}`,
     }
-
+  
     return setHeadComponents([
       <link key="gatsby-plugin-plausible-preconnect" rel="preconnect" href={`https://${PLAUSIBLE_DOMAIN}`} />,
       <script key="gatsby-plugin-plausible-script" async defer {...scriptProps} />,
@@ -26,5 +25,6 @@ export const onRenderBody = ({ setHeadComponents }) => {
       />,
     ])
   }
+
   return null
 }
