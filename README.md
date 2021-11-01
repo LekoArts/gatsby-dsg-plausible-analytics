@@ -1,6 +1,6 @@
 # Gatsby DSG + Plausible Analytics
 
-Example of using Deferred Static Generation (DSG) for pages in your Gatsby site, depending on which pages are the most visited. The list of most viewed pages is determined by accessing Plausible Analytics.
+Example of using [Deferred Static Generation (DSG)](https://www.gatsbyjs.com/docs/how-to/rendering-options/using-deferred-static-generation/) for pages in your Gatsby site, depending on which pages are the most visited. The list of most viewed pages is determined by accessing [Plausible Analytics](https://plausible.io/).
 
 You can use this example for the analytics tool you use, the general idea & setup will be the same.
 
