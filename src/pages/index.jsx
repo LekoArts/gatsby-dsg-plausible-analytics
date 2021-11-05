@@ -44,6 +44,12 @@ const IndexPage = ({ data }) => {
       <h1 style={headingStyles}>
         Blog Overview
       </h1>
+      <p>These are the three top pages (excluding index page) according to Plausible Analytics:</p>
+      {data.plausible.nodes.map(page => (
+        <li key={page.slug} style={{ ...listItemStyles }}>
+          {page.slug} - {page.visitors}
+        </li>
+      ))}
       <p style={paragraphStyles}>
         Below is the list of blog posts and only the top 3 posts will be SSG. The rest is DSG.
       </p>
@@ -74,6 +80,16 @@ export const query = graphql`
           title
           slug
         }
+      }
+    }
+    plausible: allPlausibleTopPage(
+      sort: { fields: visitors, order: DESC }
+      filter: { slug: { ne: "/" } }
+      limit: 3
+    ) {
+      nodes {
+        slug
+        visitors
       }
     }
   }
