@@ -1,6 +1,7 @@
 const fetch = require("node-fetch")
 
 const POST_NODE_TYPE = `PlausibleTopPage`
+const API_ENDPOINT = `https://plausible.io/api/v1/stats/breakdown`
 
 exports.sourceNodes = async (
   { actions, createNodeId, createContentDigest },
@@ -8,7 +9,7 @@ exports.sourceNodes = async (
 ) => {
   const { createNode } = actions
 
-  const API_URL = `https://plausible.io/api/v1/stats/breakdown?site_id=${siteId}&period=6mo&property=event:page`
+  const API_URL = `${API_ENDPOINT}?site_id=${siteId}&period=6mo&property=event:page`
 
   const response = await fetch(API_URL, {
     headers: { Authorization: `Bearer ${apiKey}` },

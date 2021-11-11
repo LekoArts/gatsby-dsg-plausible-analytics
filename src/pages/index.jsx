@@ -15,20 +15,22 @@ const headingStyles = {
 const paragraphStyles = {
   marginBottom: 48,
 }
+const listStyles = {
+  marginBottom: 32,
+  paddingLeft: 0,
+}
 const listItemStyles = {
   fontWeight: 300,
-  fontSize: 24,
+  fontSize: 21,
   maxWidth: 560,
-  marginBottom: 30,
+  marginBottom: 16,
 }
-
 const linkStyle = {
   color: "#8954A8",
   fontWeight: "bold",
   fontSize: 16,
   verticalAlign: "5%",
 }
-
 const descriptionStyle = {
   color: "#232129",
   fontSize: 14,
@@ -45,27 +47,31 @@ const IndexPage = ({ data }) => {
         Blog Overview
       </h1>
       <p>These are the three top pages (excluding index page) according to Plausible Analytics:</p>
-      {data.plausible.nodes.map(page => (
-        <li key={page.slug} style={{ ...listItemStyles }}>
-          {page.slug} - {page.visitors}
-        </li>
-      ))}
+      <ul style={listStyles}>
+        {data.plausible.nodes.map(page => (
+          <li key={page.slug} style={{ ...listItemStyles }}>
+            {page.slug} - {page.visitors}
+          </li>
+        ))}
+      </ul>
       <p style={paragraphStyles}>
         Below is the list of blog posts and only the top 3 posts will be SSG. The rest is DSG.
       </p>
-      {data.posts.nodes.map(link => (
-        <li key={link.frontmatter.slug} style={{ ...listItemStyles, color: link.color }}>
-          <span>
-            <Link
-              style={linkStyle}
-              to={link.frontmatter.slug}
-            >
-              {link.frontmatter.title}
-            </Link>
-            <p style={descriptionStyle}>{link.description}</p>
-          </span>
-        </li>
-      ))}
+      <ul style={listStyles}>
+        {data.posts.nodes.map(link => (
+          <li key={link.frontmatter.slug} style={{ ...listItemStyles, color: link.color }}>
+            <span>
+              <Link
+                style={linkStyle}
+                to={link.frontmatter.slug}
+              >
+                {link.frontmatter.title}
+              </Link>
+              <p style={descriptionStyle}>{link.description}</p>
+            </span>
+          </li>
+        ))}
+      </ul>
     </main>
   )
 }
