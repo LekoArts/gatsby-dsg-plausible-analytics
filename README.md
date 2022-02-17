@@ -4,6 +4,8 @@ Example of using [Deferred Static Generation (DSG)](https://www.gatsbyjs.com/doc
 
 You can use this example for the analytics tool you use, the general idea & setup will be the same.
 
+**Read the full blogpost [Using Deferred Static Generation with Analytics Tools](https://www.lekoarts.de/gatsby/using-deferred-static-generation-with-analytics-tools) to learn more!**
+
 ## General Idea
 
 1. Create a local plugin to access the needed data from your analytics tool
